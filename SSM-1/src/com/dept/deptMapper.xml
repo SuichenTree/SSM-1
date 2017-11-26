@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，对应的持久化类的映射文件的完整路径+文件名） -->
+<mapper namespace="com.dept.deptMapper">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertdept" parameterType="com.entity.dept">
+insert into dept(id,deptname) values(#{id},#{deptname});
+</insert>
+
+<delete id="deletedept" parameterType="Integer">
+delete from dept where id=#{id}
+</delete>
+		
+<update id="updatedept" parameterType="com.entity.dept">
+update dept  set deptname=#{deptname} where id=#{id}
+</update>
+		
+<select id="selectdeptByid" parameterType="integer" resultType="com.entity.dept">
+		select * from dept where id=#{id}
+</select>
+		
+<select id="selectAlldept" resultType="com.entity.dept">
+		select * from dept
+</select>
+
+
+<select id="dynamicselectdept" resultType="com.entity.dept">
+		select * from dept where 1=1
+		<if test=" id!=null and !id.equals('')">
+			and id=#{id}
+		</if>
+		<if test=" deptname!=null and !deptname.equals('')">
+			and deptname like CONCAT(CONCAT('%', #{deptname}), '%');
+		</if>
+</select>
+
+			
+		
+		  
+</mapper>

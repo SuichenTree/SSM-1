@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.role.roledao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertrole" parameterType="com.entity.role">
+insert into organizational_role
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		guid,
+	<if test='name != null and name != "" '>
+             name,
+    </if>
+    <if test='fields != null and fields != "" '>
+             fields,
+    </if>
+    <if test='roleType != null and roleType != "" '>
+             roleType,
+    </if>
+    <if test='company_no != null and company_no != "" '>
+             company_no,
+    </if>
+    
+    
+    </trim>
+	
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		
+		   #{guid},
+		    <if test='name != null and name != "" '>
+            		 #{name},
+		    </if>
+		    <if test='fields != null and fields != "" '>
+		              #{fields},
+		    </if>
+		    <if test='roleType != null and roleType != "" '>
+		            #{roleType},
+		    </if>
+		    <if test='company_no != null and company_no != "" '>
+		             #{company_no},
+		    </if>
+		    
+		   
+		    
+		</trim>
+</insert>
+
+<delete id="deleterole" parameterType="com.entity.role">
+delete from organizational_role where guid=#{guid}
+</delete>
+		
+<update id="updaterole" parameterType="com.entity.role">
+update organizational_role
+	<trim prefix="set" suffixOverrides=",">
+		<if test="name !=null">name=#{name},</if>
+		<if test="fields !=null">fields=#{fields},</if>
+		<if test="roleType !=null">roleType=#{roleType},</if>
+		<if test="company_no !=null">company_no=#{company_no},</if>
+		
+		
+	</trim>
+	where guid=#{guid}
+</update>
+
+
+<select id="selectrole" resultType="com.entity.role" parameterType="com.entity.role">
+	select * from organizational_role where 1=1
+	 <if test="guid !=null">and guid=#{guid}</if>
+	<if test="name !=null">and name=#{name}</if>
+		<if test="fields !=null">and fields=#{fields}</if>
+		<if test="roleType !=null">and roleType=#{roleType}</if>
+		<if test="company_no !=null">and company_no=#{company_no}</if>
+</select>
+
+
+		
+<select id="selectAllrole" resultType="com.entity.role">
+		select * from organizational_role
+</select>
+		  
+</mapper>
+

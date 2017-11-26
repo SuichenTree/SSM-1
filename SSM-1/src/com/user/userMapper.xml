@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，对应的持久化类的映射文件的完整路径+文件名） -->
+<mapper namespace="com.user.userMapper">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertuser" parameterType="com.entity.user">
+insert into user(id,username,password) values(#{id},#{username},#{password});
+</insert>
+
+<delete id="deleteuser" parameterType="int">
+delete from user where id=#{id}
+</delete>
+		
+<update id="updateuser" parameterType="com.entity.user">
+update user set username=#{username},password=#{password} where id=#{id}
+</update>
+		
+<select id="selectuserByid" parameterType="int" resultType="com.entity.user">
+		select * from user where id=#{id}
+</select>
+		
+<select id="selectuserByname" parameterType="com.entity.user" resultType="com.entity.user">
+		select * from user where username=#{username}
+</select>
+		
+<select id="selectAlluser" resultType="com.entity.user">
+		select * from user
+</select>
+
+<!-- 通过输入用户名，来查询密码，实现登陆的功能 -->	
+<select id="dynamicselectuser" resultType="com.entity.user">
+		select * from user where 1=1
+		<if test="id !=null and !id.equals('')">
+			and id=#{id}
+		</if>
+		<if test="username !=null and !username.equals('') ">
+			and username like CONCAT(CONCAT('%', #{username}), '%');
+		</if>
+		
+</select>
+			
+	
+
+</mapper>

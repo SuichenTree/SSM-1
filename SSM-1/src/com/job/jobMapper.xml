@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，对应的持久化类的映射文件的完整路径+文件名） -->
+<mapper namespace="com.job.jobMapper">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertjob" parameterType="com.entity.job">
+insert into job(id,jobname) values(#{id},#{jobname});
+</insert>
+
+<delete id="deletejob" parameterType="Integer">
+delete from job where id=#{id}
+</delete>
+		
+<update id="updatejob" parameterType="com.entity.job">
+update job  set jobname=#{jobname} where id=#{id}
+</update>
+		
+<select id="selectjobByid" parameterType="integer" resultType="com.entity.job">
+		select * from job where id=#{id}
+</select>
+		
+<select id="selectAlljob" resultType="com.entity.job">
+		select * from job
+</select>
+
+<select id="dynamicselectjob" resultType="com.entity.job">
+		select * from job where 1=1
+		<if test=" id!=null and !id.equals('')">
+			and id=#{id}
+		</if>
+		<if test=" jobname!=null and !jobname.equals('')">
+			and jobname like CONCAT(CONCAT('%', #{jobname}), '%'); 
+		</if>
+</select>
+			
+		
+		  
+</mapper>

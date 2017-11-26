@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.evalform.evalformdao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertevalform" parameterType="com.entity.evalform">
+insert into hr_kpi_evalform
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		
+	<if test='content_json != null and content_json != "" '>
+             content_json,
+    </if>
+    <if test='form_status != null and form_status != "" '>
+             form_status,
+    </if>
+    <if test='project_no != null and project_no != "" '>
+             project_no,
+    </if>
+    <if test='creator != null and creator != "" '>
+             creator,
+    </if>
+    <if test='createTime != null and createTime != "" '>
+             createTime,
+    </if>
+    <if test='creator_no != null and creator_no != "" '>
+             creator_no,
+    </if>
+    <if test='company_no != null and company_no != "" '>
+             company_no,
+    </if>
+    
+    
+    </trim>
+	
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		
+		    <if test='content_json != null and content_json != "" '>
+              		#{content_json},
+		    </if>
+		    <if test='form_status != null and form_status != "" '>
+		             #{form_status},
+		    </if>
+		    <if test='project_no != null and project_no != "" '>
+		            #{project_no},
+		    </if>
+		    <if test='creator != null and creator != "" '>
+		             #{creator},
+		    </if>
+		    <if test='createTime != null and createTime != "" '>
+		             #{createTime},
+		    </if>
+		    <if test='creator_no != null and creator_no != "" '>
+		             #{creator_no},
+		    </if>
+		    <if test='company_no != null and company_no != "" '>
+		             #{company_no},
+		    </if>
+		    
+		</trim>
+</insert>
+
+<delete id="deleteevalform" parameterType="com.entity.evalform">
+delete from hr_kpi_evalform where id=#{id}
+</delete>
+		
+<update id="updateevalform" parameterType="com.entity.evalform">
+update hr_kpi_evalform
+	<trim prefix="set" suffixOverrides=",">
+		<if test="content_json !=null">content_json=#{content_json},</if>
+		<if test="form_status !=null">form_status=#{form_status},</if>
+		<if test="project_no !=null">project_no=#{project_no},</if>
+		<if test="creator !=null">creator=#{creator},</if>
+		<if test="createTime !=null">createTime=#{createTime},</if>
+		<if test="creator_no !=null">creator_no=#{creator_no},</if>
+		<if test="company_no !=null">company_no=#{company_no},</if>
+		
+	</trim>
+	where id=#{id}
+</update>
+
+
+<select id="selectevalform" resultType="com.entity.evalform" parameterType="com.entity.evalform">
+	select * from hr_kpi_evalform where 1=1
+	 <if test="id !=null">and id=#{id}</if>
+	 <if test="content_json !=null">and content_json=#{content_json}</if>
+		<if test="form_status !=null">and form_status=#{form_status}</if>
+		<if test="project_no !=null">and project_no=#{project_no}</if>
+		<if test="creator !=null">and creator=#{creator}</if>
+		<if test="createTime !=null">and createTime=#{createTime}</if>
+		<if test="creator_no !=null">and creator_no=#{creator_no}</if>
+		<if test="company_no !=null">and company_no=#{company_no}</if>
+			
+</select>
+
+
+		
+<select id="selectAllevalform" resultType="com.entity.evalform">
+		select * from hr_kpi_evalform
+</select>
+		  
+</mapper>
+

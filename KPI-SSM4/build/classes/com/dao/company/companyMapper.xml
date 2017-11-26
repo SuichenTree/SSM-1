@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.company.companydao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertcompany" parameterType="com.entity.company">
+insert into organizational_company
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		guid,
+	<if test='code != null and code != "" '>
+             code,
+    </if>
+    <if test='name != null and name != "" '>
+             name,
+    </if>
+    <if test='address != null and address != "" '>
+             address,
+    </if>
+    <if test='contacts != null and contacts != "" '>
+             contacts,
+    </if>
+    <if test='fax != null and fax != "" '>
+             fax,
+    </if>
+    <if test='tel != null and tel != "" '>
+             tel,
+    </if>
+    
+    </trim>
+	
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		#{guid},
+		   <if test='code != null and code != "" '>
+		        #{code},
+		   </if>
+		   <if test='name != null and name != "" '>
+		           #{name},
+		   </if>
+		   <if test='address != null and address != "" '>
+		            #{address},
+		   </if>
+		   <if test='contacts != null and contacts != "" '>
+		            #{contacts},
+		   </if>
+		   <if test='fax != null and fax != "" '>
+		           #{fax},
+		   </if>
+		   <if test='tel != null and tel != "" '>
+		             #{tel},
+		   </if>
+		</trim>
+</insert>
+
+<delete id="deletecompany" parameterType="com.entity.company">
+delete from organizational_company where id=#{id}
+</delete>
+		
+<update id="updatecompany" parameterType="com.entity.company">
+update organizational_company
+	<trim prefix="set" suffixOverrides=",">
+		<if test="guid !=null">guid=#{guid},</if>
+		<if test="code !=null">code=#{code},</if>
+		<if test="name !=null">name=#{name},</if>
+		<if test="address !=null">address=#{address},</if>
+		<if test="contacts !=null">contacts=#{contacts},</if>
+		<if test="fax !=null">fax=#{fax},</if>
+		<if test="tel !=null">tel=#{tel},</if>
+		
+	</trim>
+	where id=#{id}
+</update>
+
+
+<select id="selectcompany" resultType="com.entity.company" parameterType="com.entity.company">
+	select * from organizational_company where 1=1
+	 <if test="id !=null">and id=#{id}</if>
+	 <if test="guid !=null">and guid=#{guid}</if>
+		<if test="code !=null">and code=#{code}</if>
+		<if test="name !=null">and name=#{name}</if>
+		<if test="address !=null">and address=#{address}</if>
+		<if test="contacts !=null">and contacts=#{contacts}</if>
+		<if test="fax !=null">and fax=#{fax}</if>
+		<if test="tel !=null">and tel=#{tel}</if>
+</select>
+
+
+		
+<select id="selectAllcompany" resultType="com.entity.company">
+		select * from organizational_company
+</select>
+		  
+</mapper>
+

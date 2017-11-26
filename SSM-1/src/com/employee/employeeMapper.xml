@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，对应的持久化类的映射文件的完整路径+文件名） -->
+<mapper namespace="com.employee.employeeMapper">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertemployee" parameterType="com.entity.employee">
+insert into employee(user_id,dept_id,job_id,name,age,sex,phone,hobby) values(#{user_id},#{dept_id},#{job_id},#{name},#{age},#{sex},#{phone},#{hobby});
+</insert>
+
+<delete id="deleteemployee" parameterType="Integer">
+delete from employee where user_id=#{user_id}
+</delete>
+		
+<update id="updateemployee" parameterType="com.entity.employee">
+update employee set dept_id=#{dept_id},job_id=#{job_id},name=#{name},age=#{age},sex=#{sex},phone=#{phone},hobby=#{hobby} where user_id=#{user_id}
+</update>
+		
+<select id="selectemployeeByuserid" parameterType="integer" resultType="com.entity.employee">
+		select * from employee where user_id=#{user_id}
+</select>
+		
+<select id="selectAllemployee" resultType="com.entity.employee">
+		select * from employee
+</select>
+
+<select id="dynamicselectemployee" resultType="com.entity.employee">
+		select * from employee where 1=1
+		<if test="user_id !=null and !user_id.equals('')">
+			and user_id=#{user_id}
+		</if>
+		<if test="dept_id !=null and !dept_id.equals('')">
+			and dept_id=#{dept_id}
+		</if>
+		<if test="job_id !=null and !job_id.equals('')">
+			and job_id=#{job_id}
+		</if>
+		<if test="name !=null and !name.equals('') ">
+			and name like CONCAT(CONCAT('%', #{name}), '%');
+		</if>
+		<if test=" age!=null and !age.equals('')">
+			and age=#{age}
+		</if>
+		<if test=" sex!=null and !sex.equals('') ">
+			and sex=#{sex}
+		</if>
+		<if test=" hobby !=null and !hobby.equals('') ">
+			and hobby like CONCAT(CONCAT('%', #{hobby}), '%');
+		</if>
+</select>
+			
+		
+		  
+</mapper>

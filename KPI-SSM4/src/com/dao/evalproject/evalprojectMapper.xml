@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.evalproject.evalprojectdao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+
+-->
+			
+<insert id="insertevalproject" parameterType="com.entity.evalproject">
+insert into hr_kpi_evalproject
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		title,
+	<if test='organizer != null and organizer != "" '>
+             organizer,
+    </if>
+    <if test='type != null and type != "" '>
+             type,
+    </if>
+    <if test='typeDateStart != null and typeDateStart != "" '>
+             typeDateStart,
+    </if>
+    <if test='typeDateEnd != null and typeDateEnd != "" '>
+             typeDateEnd,
+    </if>
+    <if test='object != null and object != "" '>
+             object,
+    </if>
+    <if test='purpose != null and purpose != "" '>
+             purpose,
+    </if>
+    <if test='weightA != null and weightA != "" '>
+             weightA,
+    </if>
+    <if test='weightB != null and weightB != "" '>
+             weightB,
+    </if>
+    <if test='threshold != null and threshold != "" '>
+             threshold,
+    </if>
+    <if test='startDate != null and startDate != "" '>
+             startDate,
+    </if>
+    <if test='endDate != null and endDate != "" '>
+             endDate,
+    </if>
+    <if test='rules != null and rules != "" '>
+             rules,
+    </if>
+    <if test='project_status != null and project_status != "" '>
+             project_status,
+    </if>
+    <if test='creator != null and creator != "" '>
+             creator,
+    </if>
+    <if test='createTime != null and createTime != "" '>
+             createTime,
+    </if>
+    <if test='creator_no != null and creator_no != "" '>
+             creator_no,
+    </if>
+    <if test='sender != null and sender != "" '>
+             sender,
+    </if>
+    <if test='sendTime != null and sendTime != "" '>
+             sendTime,
+    </if>
+    <if test='sender_no != null and sender_no != "" '>
+             sender_no,
+    </if>
+    <if test='company_no != null and company_no != "" '>
+             company_no,
+    </if>
+   
+</trim>
+	
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		#{title,jdbcType=VARCHAR},
+		    <if test='organizer != null and organizer != "" '>
+              		#{organizer,jdbcType=VARCHAR},
+		    </if>
+		    <if test='type != null and type != "" '>
+		             #{type,jdbcType=CHAR},
+		    </if>
+		    <if test='typeDateStart != null and typeDateStart != "" '>
+		            #{typeDateStart,jdbcType=VARCHAR},
+		    </if>
+		    <if test='typeDateEnd != null and typeDateEnd != "" '>
+		             #{typeDateEnd,jdbcType=VARCHAR},
+		    </if>
+		    <if test='object != null and object != "" '>
+		             #{object,jdbcType=VARCHAR},
+		    </if>
+		    <if test='purpose != null and purpose != "" '>
+		             #{purpose,jdbcType=VARCHAR},
+		    </if>
+		    <if test='weightA != null and weightA != "" '>
+		             #{weightA,jdbcType=DOUBLE},
+		    </if>
+		    <if test='weightB != null and weightB != "" '>
+              		#{weightB,jdbcType=DOUBLE},
+		    </if>
+		    <if test='threshold != null and threshold != "" '>
+		             #{threshold,jdbcType=DOUBLE},
+		    </if>
+		    <if test='startDate != null and startDate != "" '>
+		            #{startDate,jdbcType=VARCHAR},
+		    </if>
+		    <if test='endDate != null and endDate != "" '>
+		             #{endDate,jdbcType=VARCHAR},
+		    </if>
+		    <if test='rules != null and rules != "" '>
+		             #{rules,jdbcType=LONGVARCHAR},
+		    </if>
+		    <if test='project_status != null and project_status != "" '>
+		             #{project_status,jdbcType=CHAR},
+		    </if>
+		    <if test='creator != null and creator != "" '>
+		             #{creator,jdbcType=VARCHAR},
+		    </if>
+		    <if test='createTime != null and createTime != "" '>
+              		#{createTime,jdbcType=VARCHAR},
+		    </if>
+		    <if test='creator_no != null and creator_no != "" '>
+		             #{creator_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='sender != null and sender != "" '>
+		            #{sender,jdbcType=VARCHAR},
+		    </if>
+		    <if test='sendTime != null and sendTime != "" '>
+		             #{sendTime,jdbcType=VARCHAR},
+		    </if>
+		    <if test='sender_no != null and sender_no != "" '>
+		             #{sender_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='company_no != null and company_no != "" '>
+		             #{company_no,jdbcType=VARCHAR},
+		    </if>
+		    
+		</trim>
+</insert>
+
+<delete id="deleteevalproject" parameterType="com.entity.evalproject">
+delete from hr_kpi_evalproject where id=#{id}
+</delete>
+		
+<update id="updateevalproject" parameterType="com.entity.evalproject">
+update hr_kpi_evalproject
+	<set>
+		<if test="title !=null">title=#{title,jdbcType=VARCHAR},</if>
+		<if test="organizer !=null">organizer=#{organizer,jdbcType=VARCHAR},</if>
+		<if test="type !=null">type=#{type,jdbcType=CHAR},</if>
+		<if test="typeDateStart !=null">typeDateStart=#{typeDateStart,jdbcType=VARCHAR},</if>
+		<if test="typeDateEnd !=null">typeDateEnd=#{typeDateEnd,jdbcType=VARCHAR},</if>
+		<if test="object !=null">object=#{object,jdbcType=VARCHAR},</if>
+		<if test="purpose !=null">purpose=#{purpose,jdbcType=VARCHAR},</if>
+		<if test="weightA !=null">weightA=#{weightA,jdbcType=DOUBLE},</if>
+		<if test="weightB !=null">weightB=#{weightB,jdbcType=DOUBLE},</if>
+		<if test="threshold !=null">threshold=#{threshold,jdbcType=DOUBLE},</if>
+		<if test="startDate !=null">startDate=#{startDate,jdbcType=VARCHAR},</if>
+		<if test="endDate !=null">endDate=#{endDate,jdbcType=VARCHAR},</if>
+		<if test="rules !=null">rules=#{rules,jdbcType=LONGVARCHAR},</if>
+		<if test="project_status !=null">project_status=#{project_status,jdbcType=CHAR},</if>
+		<if test="creator !=null">creator=#{creator,jdbcType=VARCHAR},</if>
+		<if test="createTime !=null">createTime=#{createTime,jdbcType=VARCHAR},</if>
+		<if test="creator_no !=null">creator_no=#{creator_no,jdbcType=VARCHAR},</if>
+		<if test="sender !=null">sender=#{sender,jdbcType=VARCHAR},</if>
+		<if test="sendTime !=null">sendTime=#{sendTime,jdbcType=VARCHAR},</if>
+		<if test="sender_no !=null">sender_no=#{sender_no,jdbcType=VARCHAR},</if>
+		<if test="company_no !=null">company_no=#{company_no,jdbcType=VARCHAR},</if>
+	</set>
+	where id=#{id,jdbcType=INTEGER}
+</update>
+
+
+<select id="selectevalproject" resultType="com.entity.evalproject" parameterType="com.entity.evalproject">
+	select * from hr_kpi_evalproject where 1=1
+	 <if test="id !=null">and id=#{id}</if>
+	<if test="title !=null">and title=#{title}</if>
+		<if test="organizer !=null">and organizer=#{organizer}</if>
+		<if test="type !=null">and type=#{type}</if>
+		<if test="typeDateStart !=null">and typeDateStart=#{typeDateStart}</if>
+		<if test="typeDateEnd !=null">and typeDateEnd=#{typeDateEnd}</if>
+		<if test="object !=null">and object=#{object}</if>
+		<if test="purpose !=null">and purpose=#{purpose}</if>
+		<if test="weightA !=null">and weightA=#{weightA}</if>
+		<if test="weightB !=null">and weightB=#{weightB}</if>
+		<if test="threshold !=null">and threshold=#{threshold}</if>
+		<if test="startDate !=null">and startDate=#{startDate}</if>
+		<if test="endDate !=null">and endDate=#{endDate}</if>
+		<if test="rules !=null">and rules=#{rules}</if>
+		<if test="project_status !=null">and project_status=#{project_status}</if>
+		<if test="creator !=null">and creator=#{creator}</if>
+		<if test="createTime !=null">and createTime=#{createTime}</if>
+		<if test="creator_no !=null">and creator_no=#{creator_no}</if>
+		<if test="sender !=null">and sender=#{sender}</if>
+		<if test="sendTime !=null">and sendTime=#{sendTime}</if>
+		<if test="sender_no !=null">and sender_no=#{sender_no}</if>
+		<if test="company_no !=null">and company_no=#{company_no}</if>
+</select>
+
+
+		
+<select id="selectAllevalproject" resultType="com.entity.evalproject">
+		select * from hr_kpi_evalproject
+</select>
+		  
+</mapper>
+

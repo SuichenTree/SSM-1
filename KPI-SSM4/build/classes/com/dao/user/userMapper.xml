@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.user.userdao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<insert id="insertuser" parameterType="com.entity.user">
+insert into organizational_user
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		guid
+	<if test='activate != null and activate != "" '>
+             activate,
+    </if>
+    <if test='activateDate != null and activateDate != "" '>
+             activateDate,
+    </if>
+    <if test='checkCode != null and checkCode != "" '>
+             checkCode,
+    </if>
+    <if test='createDate != null and createDate != "" '>
+             createDate,
+    </if>
+    <if test='departmentId != null and departmentId != "" '>
+             departmentId,
+    </if>
+    <if test='departmentName != null and departmentName != "" '>
+             departmentName,
+    </if>
+    <if test='lastLoginDate != null and lastLoginDate != "" '>
+             lastLoginDate,
+    </if>
+    <if test='firstTimeLoginDate != null and firstTimeLoginDate != "" '>
+             firstTimeLoginDate,
+    </if>
+    <if test='phone != null and phone != "" '>
+             phone,
+    </if>
+    <if test='status != null and status != "" '>
+             status,
+    </if>
+    <if test='userName != null and userName != "" '>
+             userName,
+    </if>
+    <if test='realName != null and realName != "" '>
+             realName,
+    </if>
+    <if test='userPassword != null and userPassword != "" '>
+             userPassword,
+    </if>
+    <if test='userType != null and userType != "" '>
+             userType,
+    </if>
+    <if test='company_no != null and company_no != "" '>
+             company_no,
+    </if>
+    <if test='role_no != null and role_no != "" '>
+             role_no,
+    </if>
+    </trim>
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		#{guid,jdbcType=VARCHAR},
+      <if test='activate != null and activate != "" '>
+        #{activate,jdbcType=VARCHAR},
+      </if>
+      <if test='activateDate != null and activateDate != "" '>
+        #{activateDate,jdbcType=TIMESTAMP},
+      </if> 
+	  <if test='checkCode != null and checkCode != "" '>
+        #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test='createDate != null and createDate != "" '>
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      	<if test='departmentId != null and departmentId != "" '>
+             #{departmentId,jdbcType=VARCHAR},
+    	</if>
+	    <if test='departmentName != null and departmentName != "" '>
+	             #{departmentName,jdbcType=VARCHAR},
+	    </if>
+	    <if test='lastLoginDate != null and lastLoginDate != "" '>
+	             #{lastLoginDate,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test='firstTimeLoginDate != null and firstTimeLoginDate != "" '>
+	             #{firstTimeLoginDate,jdbcType=TIMESTAMP},
+	    </if>
+	    <if test='phone != null and phone != "" '>
+	              #{phone,jdbcType=VARCHAR},
+	    </if>
+	    <if test='status != null and status != "" '>
+	             #{status,jdbcType=VARCHAR},
+	    </if>
+	    <if test='userName != null and userName != "" '>
+	             #{userName,jdbcType=VARCHAR},
+	    </if>
+	    <if test='realName != null and realName != "" '>
+	             #{realName,jdbcType=VARCHAR},
+	    </if>
+	    <if test='userPassword != null and userPassword != "" '>
+	             #{userPassword,jdbcType=VARCHAR},
+	    </if>
+	    <if test='userType != null and userType != "" '>
+	             #{userType,jdbcType=VARCHAR},
+	    </if>
+	    <if test='company_no != null and company_no != "" '>
+	            #{company_no,jdbcType=VARCHAR},
+	    </if>
+	    <if test='role_no != null and role_no != "" '>
+	            #{role_no,jdbcType=VARCHAR},
+	    </if>
+		</trim>
+</insert>
+
+<delete id="deleteuser" parameterType="com.entity.user">
+delete from organizational_user where guid=#{guid}
+</delete>
+		
+<update id="updateuser" parameterType="com.entity.user">
+update organizational_user
+	 	<set>
+		<if test="activate !=null"> activate = #{activate,jdbcType=VARCHAR},</if>
+		<if test="activateDate !=null">activateDate=#{activateDate,jdbcType=TIMESTAMP},</if>
+		<if test="checkCode !=null">checkCode=#{checkCode,jdbcType=VARCHAR},</if>
+		<if test="createDate !=null">createDate=#{createDate,jdbcType=TIMESTAMP},</if>
+		<if test="departmentId !=null">departmentId=#{departmentId,jdbcType=VARCHAR},</if>
+		<if test="departmentName !=null">departmentName=#{departmentName,jdbcType=VARCHAR},</if>
+		<if test="lastLoginDate !=null">lastLoginDate=#{lastLoginDate,jdbcType=TIMESTAMP},</if>
+		<if test="firstTimeLoginDate !=null">firstTimeLoginDate=#{firstTimeLoginDate,jdbcType=TIMESTAMP},</if>
+		<if test="phone !=null">phone=#{phone,jdbcType=VARCHAR},</if>
+		<if test="status !=null">status=#{status,jdbcType=VARCHAR},</if>
+		<if test="userName !=null">userName=#{userName,jdbcType=VARCHAR},</if>
+		<if test="realName !=null">realName=#{realName,jdbcType=VARCHAR},</if>
+		<if test="userPassword !=null">userPassword=#{userPassword,jdbcType=VARCHAR},</if>
+		<if test="userType !=null">userType=#{userType,jdbcType=VARCHAR},</if>
+		<if test="company_no !=null">company_no=#{company_no,jdbcType=VARCHAR},</if>
+		<if test="role_no !=null">role_no=#{role_no,jdbcType=VARCHAR},</if>
+		</set>
+	where guid=#{guid,jdbcType=VARCHAR}
+</update>
+
+
+<select id="selectuser" resultType="com.entity.user" parameterType="com.entity.user">
+	select * from organizational_user where 1=1
+	 <if test="guid !=null">and guid=#{guid}</if>
+	 <if test="activate !=null">and activate=#{activate}</if>
+		<if test="activateDate !=null">and activateDate=#{activateDate}</if>
+		<if test="checkCode !=null">and checkCode=#{checkCode}</if>
+		<if test="createDate !=null">and createDate=#{createDate}</if>
+		<if test="departmentId !=null">and departmentId=#{departmentId}</if>
+		<if test="departmentName !=null">and departmentName=#{departmentName}</if>
+		<if test="lastLoginDate !=null">and lastLoginDate=#{lastLoginDate}</if>
+		<if test="firstTimeLoginDate !=null">and firstTimeLoginDate=#{firstTimeLoginDate}</if>
+		<if test="phone !=null">and phone=#{phone}</if>
+		<if test="status !=null">and status=#{status}</if>
+		<if test="userName !=null">and userName=#{userName}</if>
+		<if test="realName !=null">and realName=#{realName}</if>
+		<if test="userPassword !=null">and userPassword=#{userPassword}</if>
+		<if test="userType !=null">and userType=#{userType}</if>
+		<if test="company_no !=null">and company_no=#{company_no}</if>
+		<if test="role_no !=null">and role_no=#{role_no}</if>
+</select>
+
+
+		
+<select id="selectAlluser" resultType="com.entity.user">
+		select * from organizational_user
+</select>
+		  
+</mapper>
+

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为mapper指定唯一的命名空间（建议是，dao接口的完整类路径 -->
+<mapper namespace="com.dao.employee.employeedao">
+
+<!-- 
+namespace 命名空间 ，以前可以随便命名，当使用接口式编程(sql映射文件要与对应的接口进行动态绑定)时，要命名为接口的全类名
+#{id}:从传递过来的参数取出id值
+-->
+			
+<resultMap id="BaseResultMap" type="com.entity.employee">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="work_no" jdbcType="INTEGER" property="work_no" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="dept" jdbcType="VARCHAR" property="dept" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="id_no" jdbcType="VARCHAR" property="id_no" />
+    <result column="wechat_no" jdbcType="VARCHAR" property="wechat_no" />
+    <result column="hireDate" jdbcType="VARCHAR" property="hireDate" />
+    <result column="isActive" jdbcType="VARCHAR" property="isactive" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createTime" jdbcType="VARCHAR" property="createTime" />
+    <result column="creator_no" jdbcType="VARCHAR" property="creator_no" />
+    <result column="company_no" jdbcType="VARCHAR" property="company_no" />
+    <result column="wechat_union_id" jdbcType="VARCHAR" property="wechat_union_id" />
+</resultMap>			
+			
+			
+<insert id="insertemployee" parameterType="com.entity.employee">
+insert into hr_employee
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		work_no,
+	<if test='name != null and name != "" '>
+             name,
+    </if>
+    <if test='dept != null and dept != "" '>
+             dept,
+    </if>
+    <if test='post != null and post != "" '>
+             post,
+    </if>
+    <if test='phone != null and phone != "" '>
+             phone,
+    </if>
+    <if test='email != null and email != "" '>
+             email,
+    </if>
+    <if test='id_no != null and id_no != "" '>
+             id_no,
+    </if>
+    <if test='wechat_no != null and wechat_no != "" '>
+             wechat_no,
+    </if>
+    <if test='hireDate != null and hireDate != "" '>
+             hireDate,
+    </if>
+    <if test='isActive != null and isActive != "" '>
+             isActive,
+    </if>
+    <if test='creator != null and creator != "" '>
+             creator,
+    </if>
+    <if test='createTime != null and createTime != "" '>
+             createTime,
+    </if>
+    <if test='creator_no != null and creator_no != "" '>
+             creator_no,
+    </if>
+    <if test='company_no != null and company_no != "" '>
+             company_no,
+    </if>
+    <if test='wechar_union_id != null and wechar_union_id != "" '>
+             company_no,
+    </if>
+    
+    </trim>
+	
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		#{work_no,jdbcType=INTEGER},
+		  	<if test='name != null and name != "" '>
+		             #{name,jdbcType=VARCHAR},
+		    </if>
+		    <if test='dept != null and dept != "" '>
+		            #{dept,jdbcType=VARCHAR},
+		    </if>
+		    <if test='post != null and post != "" '>
+		             #{post,jdbcType=VARCHAR},
+		    </if>
+		    <if test='phone != null and phone != "" '>
+		              #{phone,jdbcType=VARCHAR},
+		    </if>
+		    <if test='email != null and email != "" '>
+		              #{email,jdbcType=VARCHAR},
+		    </if>
+		    <if test='id_no != null and id_no != "" '>
+		              #{id_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='wechat_no != null and wechat_no != "" '>
+		            #{wechat_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='hireDate != null and hireDate != "" '>
+		             #{hireDate,jdbcType=VARCHAR},
+		    </if>
+		    <if test='isActive != null and isActive != "" '>
+		            #{isActive,jdbcType=VARCHAR},
+		    </if>
+		    <if test='creator != null and creator != "" '>
+		            #{creator,jdbcType=VARCHAR},
+		    </if>
+		    <if test='createTime != null and createTime != "" '>
+		             #{createTime ,jdbcType=VARCHAR},
+		    </if>
+		    <if test='creator_no != null and creator_no != "" '>
+		             #{creator_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='company_no != null and company_no != "" '>
+		             #{company_no,jdbcType=VARCHAR},
+		    </if>
+		    <if test='wechar_union_id != null and wechar_union_id != "" '>
+		            #{wechar_union_id,jdbcType=VARCHAR},
+		    </if>
+		</trim>
+</insert>
+
+<delete id="deleteemployee" parameterType="com.entity.employee">
+delete from hr_employee where id=#{id}
+</delete>
+		
+<update id="updateemployee" parameterType="com.entity.employee">
+update hr_employee
+	 <set>
+	 	<if test="work_no !=null">work_no=#{work_no,jdbcType=INTEGER},</if>  
+		<if test="name !=null">name=#{name,jdbcType=VARCHAR},</if>
+		<if test="dept !=null">dept=#{dept,jdbcType=VARCHAR},</if>
+		<if test="post !=null">post=#{post,jdbcType=VARCHAR},</if>
+		<if test="phone !=null">phone=#{phone,jdbcType=VARCHAR},</if>
+		<if test="email !=null">email=#{email,jdbcType=VARCHAR},</if>
+		<if test="id_no !=null">id_no=#{id_no,jdbcType=VARCHAR},</if>
+		<if test="wechat_no !=null">wechat_no=#{wechat_no,jdbcType=VARCHAR},</if>
+		<if test="hireDate !=null">hireDate=#{hireDate,jdbcType=VARCHAR},</if>
+		<if test="isActive !=null">isActive=#{isActive,jdbcType=VARCHAR},</if>
+		<if test="creator !=null">creator=#{creator,jdbcType=VARCHAR},</if>
+		<if test="createTime !=null">createTime=#{createTime,jdbcType=VARCHAR},</if>
+		<if test="creator_no !=null">creator_no=#{creator_no,jdbcType=VARCHAR},</if>
+		<if test="company_no !=null">company_no=#{company_no,jdbcType=VARCHAR},</if>
+		<if test="wechar_union_id !=null">wechar_union_id=#{wechar_union_id,jdbcType=VARCHAR},</if>
+		
+	</set>
+	where  id=#{id,jdbcType=INTEGER} or work_no=#{work_no,jdbcType=INTEGER}
+</update>
+
+
+<update id="updateemployeeBywork_no" parameterType="com.entity.employee">
+update hr_employee
+	 <set>
+	 	
+		<if test="name !=null">name=#{name,jdbcType=VARCHAR},</if>
+		<if test="dept !=null">dept=#{dept,jdbcType=VARCHAR},</if>
+		<if test="post !=null">post=#{post,jdbcType=VARCHAR},</if>
+		<if test="phone !=null">phone=#{phone,jdbcType=VARCHAR},</if>
+		<if test="email !=null">email=#{email,jdbcType=VARCHAR},</if>
+		<if test="id_no !=null">id_no=#{id_no,jdbcType=VARCHAR},</if>
+		<if test="wechat_no !=null">wechat_no=#{wechat_no,jdbcType=VARCHAR},</if>
+		<if test="hireDate !=null">hireDate=#{hireDate,jdbcType=VARCHAR},</if>
+		<if test="isActive !=null">isActive=#{isActive,jdbcType=VARCHAR},</if>
+		<if test="creator !=null">creator=#{creator,jdbcType=VARCHAR},</if>
+		<if test="createTime !=null">createTime=#{createTime,jdbcType=VARCHAR},</if>
+		<if test="creator_no !=null">creator_no=#{creator_no,jdbcType=VARCHAR},</if>
+		<if test="company_no !=null">company_no=#{company_no,jdbcType=VARCHAR},</if>
+		<if test="wechar_union_id !=null">wechar_union_id=#{wechar_union_id,jdbcType=VARCHAR},</if>
+		
+	</set>
+	where  work_no=#{work_no,jdbcType=INTEGER}
+</update>
+
+
+<select id="selectemployee" resultType="com.entity.employee" parameterType="com.entity.employee">
+	select * from hr_employee where 1=1
+	 <if test="id !=null">and id=#{id}</if>
+	 <if test="work_no !=null">and work_no=#{work_no}</if>
+		<if test="name !=null">and name=#{name}</if>
+		<if test="dept !=null">and dept=#{dept}</if>
+		<if test="post !=null">and post=#{post}</if>
+		<if test="phone !=null">and phone=#{phone}</if>
+		<if test="email !=null">and email=#{email}</if>
+		<if test="id_no !=null">and id_no=#{id_no}</if>
+		<if test="wechat_no !=null">and wechat_no=#{wechat_no}</if>
+		<if test="hireDate !=null">and hireDate=#{hireDate}</if>
+		<if test="isActive !=null">and isActive=#{isActive}</if>
+		<if test="creator !=null">and creator=#{creator}</if>
+		<if test="createTime !=null">and createTime=#{createTime}</if>
+		<if test="creator_no !=null">and creator_no=#{creator_no}</if>
+		<if test="company_no !=null">and company_no=#{company_no}</if>
+		<if test="wechar_union_id !=null">and wechar_union_id=#{wechar_union_id}</if>
+		
+</select>
+
+
+<select id="selectemployeeBywork_no" resultType="com.entity.employee" parameterType="com.entity.employee">
+	select * from hr_employee where 1=1 and work_no=#{work_no}
+</select>
+		
+<select id="selectAllemployee" resultType="com.entity.employee">
+		select * from hr_employee
+</select>
+		  
+</mapper>
+

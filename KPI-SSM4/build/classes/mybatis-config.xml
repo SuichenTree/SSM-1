@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 指定mybatis所用日志的具体实现 -->
+<settings>
+	<setting name="logImpl" value="LOG4J"/>
+</settings>
+
+<!-- mappers标签告诉mybatis去哪里找sql（持久化类,dao层）映射文件 -->
+		 <mappers>
+			<mapper resource="com/dao/user/userMapper.xml"/>  <!-- sql映射文件的文件路径 -->
+			<mapper resource="com/dao/company/companyMapper.xml"/>  
+			<mapper resource="com/dao/employee/employeeMapper.xml"/>  
+			<mapper resource="com/dao/evalform/evalformMapper.xml"/>  
+			<mapper resource="com/dao/evalproject/evalprojectMapper.xml"/>  
+			<mapper resource="com/dao/evalrelation/evalrelationMapper.xml"/>  
+			<mapper resource="com/dao/evalresult/evalresultMapper.xml"/> 
+			<mapper resource="com/dao/evalstatus/evalstatusMapper.xml"/>
+			<mapper resource="com/dao/permission/permissionMapper.xml"/>  
+			<mapper resource="com/dao/role/roleMapper.xml"/>  
+			<mapper resource="com/dao/rolepermissions/rolepermissionsMapper.xml"/>  
+			
+		 </mappers>
+		  
+</configuration>
