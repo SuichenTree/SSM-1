@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <!-- 实现 pagehelper 分页插件 -->
+  <plugins>
+    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        <property name="param1" value="value1"/>
+	</plugin>
+ </plugins>
+     
+    <!-- mappers标签告诉mybatis去哪里找sql（持久化类的）映射文件 -->
+    <mappers>
+        <mapper resource="com\Mapper\UserMapper.xml"/>
+    </mappers>
+    
+    
+</configuration>
